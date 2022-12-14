@@ -8,7 +8,8 @@ public async up(queryRunner: QueryRunner): Promise<void> {
                 columns: [
                     {
                         name: "id",
-                        type: "uuid"
+                        type: "uuid",
+                        isPrimary: true
                     },
                     {
                         name: "name",
@@ -37,7 +38,7 @@ public async up(queryRunner: QueryRunner): Promise<void> {
                         default: false
                     },
                     {
-                        name: "createdAt",
+                        name: "created_at",
                         type: "timestamp",
                         default: "now()"
                     }
