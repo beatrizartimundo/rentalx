@@ -1,8 +1,7 @@
 import { NextFunction, Request, Response } from "express";
-
 import { verify } from "jsonwebtoken"
-
 import { UsersRepository } from "../modules/accounts/repositories/implementations/UsersRepository";
+import { AppError } from '../errors/AppError';
 
 interface IPayload {
 
@@ -24,7 +23,7 @@ export async function ensureAuthenticated(
 
   if (!authHeader) {
 
-    throw new Error("Token missing");
+    throw new AppError("Token missing", 401);
   }
 
   const [, token] = authHeader.split(" ");
@@ -32,11 +31,9 @@ export async function ensureAuthenticated(
   try {
 
     const { sub: user_id } = verify(
-
       token,
-
-      "9d7fc27b6637a226decf45c6f4037212"
-
+//gerado no md5 hash generator
+      "71227d362491f5b874a43741f2e73aec"
     ) as IPayload;
 
     const usersRepository = new UsersRepository();
@@ -45,7 +42,7 @@ export async function ensureAuthenticated(
 
     if (!user) {
 
-      throw new Error("User does not exists!");
+      throw new AppError("User does not exists!",401);
 
     }
 
@@ -53,7 +50,7 @@ export async function ensureAuthenticated(
 
   } catch {
 
-    throw new Error("Invalid token");
+    throw new AppError("Invalid token",401);
 
   }
 
