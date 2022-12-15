@@ -46,6 +46,10 @@ export async function ensureAuthenticated(
 
     }
 
+    request.user = {
+      id: user_id
+    }
+
     next();
 
   } catch {
