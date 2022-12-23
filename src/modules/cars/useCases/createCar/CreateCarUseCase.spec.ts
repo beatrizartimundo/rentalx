@@ -53,7 +53,7 @@ describe("Create Car", () => {
     }).rejects.toBeInstanceOf(AppError);
   });
 
-  it("not should be able to create a car with available true by default", async () => {
+  it("should be able to create a car with available true by default", async () => {
     const car = await createCarUseCase.execute({
       name: "Car Available", 
       description: "Description car", 

@@ -26,8 +26,10 @@ class CarsRepositoryInMemory implements ICarsRepository {
       category_id
     });
 
-    this.cars.push(car);
+    car.available == true;
     
+    this.cars.push(car);
+
     return car;
   }
 
