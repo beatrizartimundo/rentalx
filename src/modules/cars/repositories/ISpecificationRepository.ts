@@ -7,9 +7,10 @@ interface ICreateSpecificationDTO {
 }
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
-interface IspecificationRepository {
-  create({ name, description }: ICreateSpecificationDTO): Promise<void>;
+interface ISpecificationRepository {
+  create({ name, description }: ICreateSpecificationDTO): Promise<Specification>;
   findByName(name: string): Promise<Specification>;
+  findByIds(ids: string[]): Promise<Specification[]>;
 }
 
-export { IspecificationRepository, ICreateSpecificationDTO };
+export { ISpecificationRepository, ICreateSpecificationDTO };
